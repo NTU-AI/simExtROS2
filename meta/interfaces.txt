@@ -34,6 +34,7 @@ ros2_interfaces/msg/ModelInfo
 ros2_interfaces/msg/ModelsInfo
 ros2_interfaces/msg/SpawnInfo
 ros2_interfaces/msg/UpdateInfo
+ros2_interfaces/msg/UpdatesInfo
 ros2_interfaces/srv/SimScene
 ros2_interfaces/srv/SpawnEntity
 ros2_interfaces/srv/DeleteEntity
