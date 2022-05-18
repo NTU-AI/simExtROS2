@@ -30,6 +30,7 @@ std_srvs/srv/SetBool
 std_srvs/srv/Trigger
 example_interfaces/srv/AddTwoInts
 example_interfaces/action/Fibonacci
+ros2_interfaces/msg/ShapeInfo
 ros2_interfaces/msg/ModelInfo
 ros2_interfaces/msg/ModelsInfo
 ros2_interfaces/msg/SpawnInfo
