@@ -35,6 +35,7 @@ struct unsupported_type : public std::exception
 class Plugin : public sim::Plugin
 {
 public:
+
     void onStart()
     {
         if(!initialize())
@@ -888,7 +889,12 @@ public:
         char *node_name = nullptr;
         node_name = simGetStringNamedParam("ROS2Interface.nodeName", &node_name_length);
 
-        node = rclcpp::Node::make_shared(node_name && node_name_length ? node_name : "sim_ros2_interface");
+        int node_namespace_length = 0;
+        char *node_namespace = simGetStringNamedParam("ROS2Interface.nodeNamespace", &node_namespace_length);
+        
+        char * simulatorNamespace = node_namespace && node_namespace_length ? node_namespace : (char*) "/coppeliaSim";
+
+        node = rclcpp::Node::make_shared(node_name && node_name_length ? node_name : "sim_ros2_interface", simulatorNamespace);
 
         if(node_name) simReleaseBuffer(node_name);
 
