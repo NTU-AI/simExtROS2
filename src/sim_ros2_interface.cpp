@@ -35,7 +35,6 @@ struct unsupported_type : public std::exception
 class Plugin : public sim::Plugin
 {
 public:
-
     void onStart()
     {
         if(!initialize())
