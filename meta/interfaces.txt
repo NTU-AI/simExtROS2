@@ -42,3 +42,4 @@ ros2_interfaces/srv/SimSceneJSON
 ros2_interfaces/srv/SpawnEntity
 ros2_interfaces/srv/DeleteEntity
 ros2_interfaces/srv/UpdateEntity
+ros2_interfaces/srv/UpdateModelProp
