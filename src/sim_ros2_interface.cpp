@@ -888,7 +888,7 @@ public:
         node_name = simGetNamedStringParam("ROS2Interface.nodeName", &node_name_length);
 
         int node_namespace_length = 0;
-        char *node_namespace = simGetStringNamedParam("ROS2Interface.nodeNamespace", &node_namespace_length);
+        char *node_namespace = simGetNamedStringParam("ROS2Interface.nodeNamespace", &node_namespace_length);
         
         char * simulatorNamespace = node_namespace && node_namespace_length ? node_namespace : (char*) "/coppeliaSim";
 
