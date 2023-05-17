@@ -1,6 +1,6 @@
 #include <sim_ros2_interface.h>
 #include <simPlusPlus/Plugin.h>
-#include <simPlusPlus/Handle.h>
+#include <simPlusPlus/Handles.h>
 
 #include <cstdlib>
 #include <functional>
@@ -61,8 +61,8 @@ public:
     {
 
         int stopSimulationRequestCounter;
-        simGetIntegerParameter(sim_intparam_stop_request_counter, &stopSimulationRequestCounter);
-        simBool doNotRun = simGetBoolParameter(sim_boolparam_rosinterface_donotrunmainscript);
+        simGetInt32Param(sim_intparam_stop_request_counter, &stopSimulationRequestCounter);
+        bool doNotRun = simGetBoolParam(sim_boolparam_rosinterface_donotrunmainscript);
         if(doNotRun > 0)
         {
             if(previousStopSimulationRequestCounter == -1)
@@ -154,8 +154,7 @@ public:
         if(simGetSimulationState() == sim_simulation_stopped)
             return false;
         int property;
-        int associatedObject;
-        if(simGetScriptProperty(scriptID, &property, &associatedObject) == -1)
+        if (simGetScriptInt32Param(scriptID,sim_scriptintparam_type,&property) != 1)
             return false;
 #if SIM_PROGRAM_FULL_VERSION_NB <= 4010003
         if(property & sim_scripttype_threaded)
@@ -886,7 +885,7 @@ public:
 
         int node_name_length = 0;
         char *node_name = nullptr;
-        node_name = simGetStringNamedParam("ROS2Interface.nodeName", &node_name_length);
+        node_name = simGetNamedStringParam("ROS2Interface.nodeName", &node_name_length);
 
         int node_namespace_length = 0;
         char *node_namespace = simGetStringNamedParam("ROS2Interface.nodeNamespace", &node_namespace_length);
@@ -939,12 +938,12 @@ private:
     image_transport::ImageTransport *imtr = nullptr;
 #endif
 
-    sim::Handles<SubscriptionProxy> subscriptionHandles;
-    sim::Handles<PublisherProxy> publisherHandles;
-    sim::Handles<ClientProxy> clientHandles;
-    sim::Handles<ServiceProxy> serviceHandles;
-    sim::Handles<ActionClientProxy> actionClientHandles;
-    sim::Handles<ActionServerProxy> actionServerHandles;
+    sim::Handles<SubscriptionProxy*> subscriptionHandles;
+    sim::Handles<PublisherProxy*> publisherHandles;
+    sim::Handles<ClientProxy*> clientHandles;
+    sim::Handles<ServiceProxy*> serviceHandles;
+    sim::Handles<ActionClientProxy*> actionClientHandles;
+    sim::Handles<ActionServerProxy*> actionServerHandles;
 };
 
 SIM_PLUGIN(PLUGIN_NAME, PLUGIN_VERSION, Plugin)
