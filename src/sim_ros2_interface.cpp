@@ -880,8 +880,9 @@ public:
         rclcpp::init(0, nullptr);
 
         auto node_name = sim::getNamedStringParam("ROS2Interface.nodeName");
+        auto node_namespace = sim::getNamedStringParam("ROS2Interface.nodeNamespace");
 
-        node = rclcpp::Node::make_shared(node_name.value_or("sim_ros2_interface"));
+        node = rclcpp::Node::make_shared(node_name.value_or("sim_ros2_interface"), node_namespace.value_or("/coppeliaSim"));
 
         tfbr = new tf2_ros::TransformBroadcaster(node);
 #if image_transport_FOUND
