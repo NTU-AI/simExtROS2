@@ -44,7 +44,6 @@ ros2_interfaces/msg/UpdateInfo
 ros2_interfaces/msg/UpdatesInfo
 ros2_interfaces/srv/SetScene
 ros2_interfaces/srv/SimScene
-ros2_interfaces/srv/SimSceneJSON
 ros2_interfaces/srv/SpawnEntity
 ros2_interfaces/srv/DeleteEntity
 ros2_interfaces/srv/UpdateEntity
