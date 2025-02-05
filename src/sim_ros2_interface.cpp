@@ -77,7 +77,7 @@ public:
         previousStopSimulationRequestCounter = -1;
     }
 
-    void onScriptStateAboutToBeDestroyed(int scriptHandle, int scriptUid)
+    void onScriptStateAboutToBeDestroyed(int scriptHandle, long long scriptUid)
     {
         for(auto subscriptionProxy : subscriptionHandles.find(scriptHandle))
         {
@@ -496,6 +496,11 @@ public:
         actionClientProxy->rd_opt.uint8array_as_string = true;
         actionClientProxy->wr_opt.uint8array_as_string = true;
     }
+
+    void spinSome(spinSome_in *in, spinSome_out *out)
+    {
+        rclcpp::spin_some(node);
+    }    
 
     void sendGoal(sendGoal_in *in, sendGoal_out *out)
     {
